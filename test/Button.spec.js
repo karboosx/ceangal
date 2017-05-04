@@ -43,6 +43,12 @@ describe("Button", () => {
     expect(button.render().text).to.equal(10);
   });
 
+  it('should throw error when call undefined event', function () {
+    expect(() => {
+      button.runEvent('not_found')
+    }).to.throw('not_found is not registered');
+  });
+
 
 
 });

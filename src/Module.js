@@ -70,6 +70,10 @@ class Module {
   }
 
   runEvent(eventName, ...parameters) {
+    if (!this.events.hasOwnProperty(eventName)){
+      throw new Error(eventName+' is not registered');
+    }
+
     this.events[eventName](...parameters);
   }
 
