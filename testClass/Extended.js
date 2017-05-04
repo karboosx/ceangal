@@ -2,7 +2,6 @@ import Module from '../src/Module'
 
 class Extended extends Module{
 
-
     constructor(config){
         super(config);
 
@@ -13,7 +12,13 @@ class Extended extends Module{
     }
 
     render() {
-        return '{}';
+        return JSON.stringify(this.vars);
+    }
+
+    defaultVars(){
+        return {
+            new_var:100
+        }
     }
 
 }

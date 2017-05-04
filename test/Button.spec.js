@@ -1,6 +1,7 @@
 //noinspection JSUnresolvedVariable
 import { expect } from 'chai';
 import Button from '../testClass/Button';
+import Module from '../src/Module';
 
 describe("Button", () => {
   let button;
@@ -49,6 +50,41 @@ describe("Button", () => {
     }).to.throw('not_found is not registered');
   });
 
+
+  it("should create Extended object", () => {
+    let button = Module.create({
+      'module-name':'button',
+      'module-config':{vars:{
+        counter:200
+      }}
+    });
+
+    expect(button.constructor).to.equal(Button);
+  });
+
+  it("should render pseudo DOMElement", () => {
+    let button = Module.create({
+      'module-name':'button',
+      'module-config':{vars:{
+        counter:200
+      }}
+    });
+
+    expect(button.render()).to.property('text');
+    expect(button.render()).to.property('click');
+  });
+  
+  it("should have working click", () => {
+    let button = Module.create({
+      'module-name':'button',
+      'module-config':{vars:{
+        counter:200
+      }}
+    });
+
+    button.render().dbclick();
+    expect(button.render().text).to.equal(205);
+  });
 
 
 });

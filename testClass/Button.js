@@ -6,10 +6,6 @@ class Button extends Module{
     constructor(config){
         super(config);
 
-        this.vars = {
-            counter:0
-        };
-
         this.vars_description = {
             test:'testing'
         };
@@ -20,6 +16,12 @@ class Button extends Module{
             this.vars.counter = this.vars.counter+amount;
         });
 
+    }
+
+    defaultVars(){
+        return {
+            counter:0
+        }
     }
 
     render() {

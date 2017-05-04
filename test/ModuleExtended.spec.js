@@ -16,7 +16,7 @@ describe("Extended", () => {
 
 
   it("should throw error when call render", () => {
-    expect(new_module.render()).to.equal('{}');//TODO
+    expect(new_module.render()).to.equal('{"new_var":1}');
   });
 
   it ('should return new_var var', () => {
@@ -38,11 +38,11 @@ describe("Extended loaded From JSON", () => {
 
 
   it("should throw error when call render", () => {
-    expect(new_module.constructor).to.equal(Extended);//TODO
+    expect(new_module.constructor).to.equal(Extended);
   });
 
   it("should throw error when call render", () => {
-    expect(new_module.render()).to.equal('{}');//TODO
+    expect(new_module.render()).to.equal('{"new_var":1}');
   });
 
   it ('should return new_var var', () => {
@@ -68,11 +68,11 @@ describe("Extended created from Module.createModule", () => {
 
 
   it("should throw error when call render", () => {
-    expect(new_module.constructor).to.equal(Extended);//TODO
+    expect(new_module.constructor).to.equal(Extended);
   });
 
   it("should throw error when call render", () => {
-    expect(new_module.render()).to.equal('{}');//TODO
+    expect(new_module.render()).to.equal('{"new_var":1}');
   });
 
   it ('should return new_var var', () => {
@@ -89,5 +89,54 @@ describe("Extended created from Module.createModule", () => {
       let test = Module.createModule('not_found',{});
     }).to.throw('not_found is not registered');
   });
+
+});
+
+describe("Module.create", () => {
+
+  it("should create Extended object", () => {
+    let extened = Module.create({
+      'module-name':'extended',
+      'module-config':{vars:{
+        new_var:200
+      }}
+    });
+
+    expect(extened.constructor).to.equal(Extended);
+    expect(extened.render()).to.equal(JSON.stringify({
+      new_var:200
+    }));
+  });
+
+  it("should throw exception when module is not found", () => {
+
+    expect(function () {
+      let extened = Module.create({
+        'module-name':'not_found',
+        'module-config':{}
+      });
+
+    }).to.throw('not_found is not registered');
+  });
+
+  it("should throw exception when passed parameter is not object", () => {
+
+    expect(function () {
+      let extened = Module.create('not_a_object');
+
+    }).to.throw('Module.create() accept only Object parameters');
+  });
+
+  it("should throw exception when passed parameter is not proper format", () => {
+
+    expect(function () {
+      let extened = Module.create({
+        'sth-other-name':'not_found',
+        'sth-other-config':{}
+      });
+
+    }).to.throw('This is not proper moduleObjectData format');
+  });
+
 
 });

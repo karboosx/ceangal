@@ -3,21 +3,43 @@ class Module {
   /**
    * All necessary properties for this module
    *
-   * @type Object
+   * @type {Object}
    */
   vars = {};
 
   /**
    * Help list
    *
-   * @type Object
+   * @type {Object}
    */
   vars_description = {};
 
+  /**
+   * Default values for this.var
+   *
+   * @type {Object}
+   */
+  defaultVars_ = undefined;
+
   constructor(config) {
+    this.defaultVars_ = this.defaultVars();
+
+    if (typeof this.defaultVars_ == 'object') {
+      Object.assign(this.vars, this.defaultVars_);
+    }
+
     if (typeof config == 'object') {
       this.loadConfig(config)
     }
+  }
+
+  /**
+   * Override this if you want set default Vars
+   *
+   * @returns {Object}
+   */
+  defaultVars(){
+    return {};
   }
 
   /**
@@ -114,6 +136,16 @@ class Module {
     }
 
     return new this.modules[moduleName](config);
+  }
+
+  static create(moduleObjectData){
+    if (typeof moduleObjectData !== 'object')
+      throw new Error('Module.create() accept only Object parameters');
+
+    if (!moduleObjectData.hasOwnProperty('module-name') || !moduleObjectData.hasOwnProperty('module-config'))
+      throw new Error('This is not proper moduleObjectData format');
+
+    return this.createModule(moduleObjectData['module-name'], moduleObjectData['module-config']);
   }
 }
 
