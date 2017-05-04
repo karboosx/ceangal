@@ -47,6 +47,9 @@ describe("Extended loaded From JSON", () => {
   it ('should return new_var var', () => {
     expect(new_module.vars.new_var).to.equal(1);
   });
+  it ('should return help string', () => {
+    expect(new_module.printHelp()).to.equal('test - testing');
+  });
 
 
 });

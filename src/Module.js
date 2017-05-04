@@ -21,6 +21,15 @@ class Module {
   static loadFromJSON(json) {
     return new this(JSON.parse(json));
   }
+
+  printHelp() {
+    let help = [];
+    for (let var_name in this.vars_description) {
+      help.push(var_name+' - '+this.vars_description[var_name]);
+    }
+
+    return help.join("\n");
+  }
 }
 
 export default Module;
