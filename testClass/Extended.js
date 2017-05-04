@@ -18,4 +18,6 @@ class Extended extends Module{
 
 }
 
+Module.registerModule('extended', Extended);
+
 export default Extended;
