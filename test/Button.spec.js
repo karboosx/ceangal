@@ -20,11 +20,27 @@ describe("Button", () => {
   it('should add 1 to counter', function () {
     button.render().click();
     expect(button.render().text).to.equal(1);
+    button.render().click();
+    expect(button.render().text).to.equal(2);
   });
 
   it('should add 5 to counter', function () {
     button.render().dbclick();
     expect(button.render().text).to.equal(5);
+    button.render().dbclick();
+    expect(button.render().text).to.equal(10);
+
+  });
+
+  it('should not change text when run several times', function () {
+    button.render().dbclick();
+    expect(button.render().text).to.equal(5);
+    expect(button.render().text).to.equal(5);
+    expect(button.render().text).to.equal(5);
+    button.render().dbclick();
+    expect(button.render().text).to.equal(10);
+    expect(button.render().text).to.equal(10);
+    expect(button.render().text).to.equal(10);
   });
 
 
