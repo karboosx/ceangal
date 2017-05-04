@@ -15,7 +15,9 @@ class Module {
   vars_description = {};
 
   constructor(config) {
-    this.loadConfig(config)
+    if (typeof config == 'object') {
+      this.loadConfig(config)
+    }
   }
 
   /**
@@ -31,16 +33,62 @@ class Module {
   /**
    * Render this module and return finish DOMElement with all listeners
    *
-   * @return DOMElement
+   * @returns {Element}
    */
   render() {
     throw new Error('render is not implemented');
   }
 
+  defaultDOMElement = undefined;
+
+  /**
+   * SetUp DOMElement
+   *
+   * @returns {Element}
+   */
+  setupDefaultDOMElement() {
+    throw new Error('setupDOMElement is not implemented');
+  }
+
+  /**
+   * Get default DOMElement
+   *
+   * @returns {Element}
+   */
+  get DOMElement() {
+    if (this.defaultDOMElement == undefined){
+      this.defaultDOMElement = this.setupDefaultDOMElement();
+    }
+
+    return this.defaultDOMElement;
+  }
+
+  events = {};
+
+  setEvent(eventName, eventFunction) {
+    this.events[eventName] = eventFunction;
+  }
+
+  runEvent(eventName, ...parameters) {
+    this.events[eventName](...parameters);
+  }
+
+
+  /**
+   * Make new instance of this module and load config from JSON
+   *
+   * @param json
+   * @returns {Module}
+   */
   static loadFromJSON(json) {
     return new this(JSON.parse(json));
   }
 
+  /**
+   *
+   *
+   * @returns {string}
+   */
   printHelp() {
     let help = [];
     for (let var_name in this.vars_description) {
