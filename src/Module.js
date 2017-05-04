@@ -147,6 +147,30 @@ class Module {
 
     return this.createModule(moduleObjectData['module-name'], moduleObjectData['module-config']);
   }
+
+  static getModuleNameByClass(Class){
+      for (var moduleName in this.modules) {
+          if (this.modules[moduleName] === Class.constructor)
+              return moduleName;
+      }
+
+      return null;
+  }
+
+  save(){
+      let moduleName = Module.getModuleNameByClass(this);
+
+      if (moduleName == null){
+          throw new Error('Can\'t find this module');
+      }
+
+      return {
+          'module-name':moduleName,
+          'module-config':{
+              vars:this.vars
+          }
+      }
+  }
 }
 
 export default Module;
