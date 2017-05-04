@@ -9,11 +9,17 @@ class Module {
   }
 
   loadConfig(config) {
-    Object.assign(this.vars, config.vars);
+    if (config.hasOwnProperty('vars')) {
+      Object.assign(this.vars, config.vars);
+    }
   }
 
   render() {
     throw new Error('render is not implemented');
+  }
+
+  static loadFromJSON(json) {
+    return new this(JSON.parse(json));
   }
 }
 

@@ -2,7 +2,7 @@
 import { expect } from 'chai';
 import Module from '../src/Module';
 
-describe("Person", () => {
+describe("Module", () => {
   let new_module;
 
   before(() => {
@@ -23,9 +23,10 @@ describe("Person", () => {
 
   it ('should return test var', () => {
     expect(new_module.vars.test).to.equal(1);
-  })
+  });
+
   it ('should return new_var var', () => {
     expect(new_module.vars.new_var).to.equal('test');
-  })
+  });
 
 });
