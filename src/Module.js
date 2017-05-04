@@ -85,12 +85,28 @@ class Module {
     return this.defaultDOMElement;
   }
 
+  /**
+   * All events assigned to this module
+   * @type {Object}
+   */
   events = {};
 
+  /**
+   * Set new event
+   *
+   * @param eventName
+   * @param eventFunction
+   */
   setEvent(eventName, eventFunction) {
     this.events[eventName] = eventFunction;
   }
 
+  /**
+   * Run saved event
+   *
+   * @param eventName
+   * @param parameters
+   */
   runEvent(eventName, ...parameters) {
     if (!this.events.hasOwnProperty(eventName)){
       throw new Error(eventName+' is not registered');
@@ -111,7 +127,7 @@ class Module {
   }
 
   /**
-   *
+   * Return help string
    *
    * @returns {string}
    */
@@ -126,10 +142,22 @@ class Module {
 
   static modules = {};
 
+  /**
+   * Register new module for use by Module.create or Module.createModule
+   *
+   * @param moduleName
+   * @param moduleClass
+   */
   static registerModule(moduleName, moduleClass) {
     this.modules[moduleName] = moduleClass;
   }
 
+  /**
+   * Create module instance by passing thier name and config
+   *
+   * @param moduleName
+   * @param config
+   */
   static createModule(moduleName, config) {
     if (!this.modules.hasOwnProperty(moduleName)){
       throw new Error(moduleName+' is not registered');
@@ -138,6 +166,12 @@ class Module {
     return new this.modules[moduleName](config);
   }
 
+  /**
+   * Create instance of module just by passing it saved data
+   *
+   * @param moduleObjectData
+   * @returns {Module}
+   */
   static create(moduleObjectData){
     if (typeof moduleObjectData !== 'object')
       throw new Error('Module.create() accept only Object parameters');
@@ -148,6 +182,12 @@ class Module {
     return this.createModule(moduleObjectData['module-name'], moduleObjectData['module-config']);
   }
 
+  /**
+   * Get registered module name by passing module instance
+   *
+   * @param Class
+   * @returns {string|null}
+   */
   static getModuleNameByClass(Class){
       for (var moduleName in this.modules) {
           if (this.modules[moduleName] === Class.constructor)
@@ -157,6 +197,12 @@ class Module {
       return null;
   }
 
+  /**
+   * Return saved version of module
+   * For use by Module.create
+   *
+   * @returns {Object}
+   */
   save(){
       let moduleName = Module.getModuleNameByClass(this);
 
