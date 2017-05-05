@@ -1,3 +1,9 @@
-import Module from './src/Module'
+import TrueButton from './testClass/TrueButton'
 
-new Module();
+
+(function () {
+    let trueButton = new TrueButton();
+    console.log('button');
+    document.getElementById('app').appendChild(trueButton.render());
+
+})();
