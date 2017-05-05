@@ -70,6 +70,11 @@ class Module {
     if (config.hasOwnProperty('vars')) {
       Object.assign(this.vars, config.vars);
     }
+
+    if (config.hasOwnProperty('id')) {
+      Module.assignID(config.id, this);
+    }
+
   }
 
   /**
@@ -220,6 +225,40 @@ class Module {
   }
 
   /**
+   * Assign new ID for provided module
+   *
+   * @param id
+   * @param module
+   * @returns {Module}
+   */
+  static assignID(id, module){
+    if (Module.ids.hasOwnProperty(id))
+      throw new Error('This ID is already assigned');
+
+    if (typeof module !== 'object')
+      throw new Error('Module.assignID() accept only Object parameters');
+
+    Module.ids[id] = module;
+
+    return module;
+  }
+
+  /**
+   * Get Module by ID
+   *
+   * @param id
+   * @returns {Module}
+   */
+  static getModuleByID(id){
+    if (!Module.ids.hasOwnProperty(id))
+      throw new Error('There is no module with that ID');
+
+    return Module.ids[id];
+  }
+
+
+
+  /**
    * Get registered module name by passing module instance
    *
    * @param Class
@@ -255,5 +294,8 @@ class Module {
       }
   }
 }
+
 Module.modules = {};
+Module.ids = {};
+
 export default Module;

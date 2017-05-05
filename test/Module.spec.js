@@ -71,6 +71,35 @@ describe("Module Parenting", () => {
     expect(function () {
       new Button().getParent();
     }).to.throw('This module don\'t have parent');
-  })
+  });
+
+  it('should auto assign ID', () => {
+    let parent = new Button({
+      id:'test'
+    });
+
+    let buttonByID = Module.getModuleByID('test');
+    expect(buttonByID).to.instanceOf(Button);
+
+  });
+
+  it('should throw exception when create module with existing id', () => {
+    expect(function () {
+      new Button({
+        id:'existing_test'
+      });
+
+      new Button({
+        id:'existing_test'
+      });
+
+    }).to.throw('This ID is already assigned');
+  });
+
+  it('should throw exception when getting module with non existing ID', () => {
+    expect(function () {
+      Module.getModuleByID('non_existing')
+    }).to.throw('There is no module with that ID');
+  });
 
 });
