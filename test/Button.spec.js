@@ -18,6 +18,10 @@ describe("Button", () => {
     expect(button.render().text).to.equal(0);
   });
 
+  it('should return DOMElement', function () {
+    expect(button.renderedDOMElement.text).to.equal(0);
+  });
+
   it('should add 1 to counter', function () {
     button.render().click();
     expect(button.render().text).to.equal(1);
