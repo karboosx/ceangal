@@ -88,6 +88,17 @@ class Module {
   }
 
   /**
+   * Render this module and return finish DOMElement with all listeners
+   *
+   * @returns {undefined}
+   */
+  rerender() {
+    this.render(this.DOMElement);
+  }
+
+
+
+  /**
    * SetUp DOMElement
    *
    * @returns {Element}
@@ -141,7 +152,20 @@ class Module {
       throw new Error(eventName+' is not registered');
     }
 
-    this.events[eventName](...parameters);
+    this.tryToRunEvent(eventName, ...parameters);
+
+  }
+
+  /**
+   * Execute event
+   *
+   * @param eventName
+   * @param parameters
+   */
+  tryToRunEvent(eventName, ...parameters) {
+    if (this.events.hasOwnProperty(eventName)) {
+      this.events[eventName](...parameters);
+    }
   }
 
 
