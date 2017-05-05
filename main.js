@@ -4,11 +4,30 @@ import css from './main.scss'
 
 (function () {
 
-    let intro = new TextIntro();
-    intro.setEvent('end', function () {
-        alert('end');
+    let intro = new TextIntro({
+        vars:{
+            // texts:[
+            //     {
+            //         text:'This is very first page!',
+            //     },
+            //     {
+            //         text:'Long ago....',
+            //     },
+            //     {
+            //         text:'There was a castle...',
+            //     },
+            //     {
+            //         text:'and that\'s it!',
+            //     },
+            //
+            // ]
+        }
     });
-    document.getElementById('app').appendChild(intro.renderedDOMElement);
 
+    intro.setEvent('end', function () {
+
+    });
+
+    document.getElementById('app').appendChild(intro.renderedDOMElement);
 
 })();

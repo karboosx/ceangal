@@ -6,14 +6,8 @@ class TextIntro extends Module{
         return {
             texts:[
                 {
-                    text:'Hello',
-                },
-                {
-                    text:'Next line',
-                },
-                {
-                    text:'Finish Line',
-                    button:'End'
+                    text:'[no text]',
+                    button:'[no text]',
                 },
             ],
             position:0
