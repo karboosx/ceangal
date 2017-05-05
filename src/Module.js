@@ -1,28 +1,38 @@
 class Module {
 
-  /**
-   * All necessary properties for this module
-   *
-   * @type {Object}
-   */
-  vars = {};
-
-  /**
-   * Help list
-   *
-   * @type {Object}
-   */
-  vars_description = {};
-
-  /**
-   * Default values for this.var
-   *
-   * @type {Object}
-   */
-  defaultVars_ = undefined;
-
   constructor(config) {
+    /**
+     * All necessary properties for this module
+     *
+     * @type {Object}
+     */
+    this.vars = {};
+
+    /**
+     * Help list
+     *
+     * @type {Object}
+     */
+    this.vars_description = {};
+
+    /**
+     * Default values for this.var
+     *
+     * @type {Object}
+     */
+
     this.defaultVars_ = this.defaultVars();
+
+    /**
+     * All events assigned to this module
+     * @type {Object}
+     */
+    this.events = {};
+
+    this.defaultDOMElement = undefined;
+
+    Module.modules = {};
+
 
     if (typeof this.defaultVars_ == 'object') {
       Object.assign(this.vars, this.defaultVars_);
@@ -61,8 +71,6 @@ class Module {
     throw new Error('render is not implemented');
   }
 
-  defaultDOMElement = undefined;
-
   /**
    * SetUp DOMElement
    *
@@ -85,11 +93,6 @@ class Module {
     return this.defaultDOMElement;
   }
 
-  /**
-   * All events assigned to this module
-   * @type {Object}
-   */
-  events = {};
 
   /**
    * Set new event
@@ -139,8 +142,6 @@ class Module {
 
     return help.join("\n");
   }
-
-  static modules = {};
 
   /**
    * Register new module for use by Module.create or Module.createModule
