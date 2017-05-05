@@ -55,3 +55,22 @@ describe("Module", () => {
 
 
 });
+
+describe("Module Parenting", () => {
+
+  it('should create parent', () => {
+    let parent = new Button();
+
+    let child = parent.create('button');
+    expect(child.vars).to.property('counter', 0);
+    expect(parent.childs[0]).to.equal(child);
+    expect(child.getParent()).to.equal(parent);
+  });
+
+  it('should throw exception when module don\'t have parent', () => {
+    expect(function () {
+      new Button().getParent();
+    }).to.throw('This module don\'t have parent');
+  })
+
+});

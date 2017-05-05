@@ -33,6 +33,10 @@ class Module {
 
     this.elements = {};
 
+    this.childs = [];
+
+    this.parent = undefined;
+
 
     if (typeof this.defaultVars_ == 'object') {
       Object.assign(this.vars, this.defaultVars_);
@@ -43,6 +47,12 @@ class Module {
     }
   }
 
+  getParent() {
+    if (this.parent == undefined){
+      throw new Error('This module don\'t have parent');
+    }
+    return this.parent;
+  }
   /**
    * Override this if you want set default Vars
    *
@@ -165,7 +175,7 @@ class Module {
   }
 
   /**
-   * Create module instance by passing thier name and config
+   * Create module instance by passing their name and config
    *
    * @param moduleName
    * @param config
@@ -176,6 +186,21 @@ class Module {
     }
 
     return new this.modules[moduleName](config);
+  }
+
+  /**
+   * Create module instance by passing their name and config and assign parent-child relationship
+   *
+   * @param moduleName
+   * @param config
+   */
+  create(moduleName, config) {
+    let child = Module.createModule(moduleName, config);
+
+    child.parent = this;
+    this.childs.push(child);
+
+    return child;
   }
 
   /**
