@@ -13,10 +13,6 @@ class TrueButton extends Module{
             this.render();
         });
 
-        this.setEvent('addX', (amount) => {
-            this.vars.counter = this.vars.counter+amount;
-        });
-
     }
 
     defaultVars(){

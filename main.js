@@ -1,9 +1,13 @@
 import TrueButton from './testClass/TrueButton'
+import TrueInput from './testClass/TrueInput'
 
 
 (function () {
-    let trueButton = new TrueButton();
 
-    document.getElementById('app').appendChild(trueButton.render());
+    document.getElementById('app').appendChild(new TrueButton().renderedDOMElement);
+    document.getElementById('app').appendChild(new TrueButton().renderedDOMElement);
+    document.getElementById('app').appendChild(new TrueInput().renderedDOMElement);
+
+
 
 })();

@@ -31,7 +31,7 @@ class Module {
 
     this.defaultDOMElement = undefined;
 
-    Module.modules = {};
+    this.elements = {};
 
 
     if (typeof this.defaultVars_ == 'object') {
@@ -65,9 +65,10 @@ class Module {
   /**
    * Render this module and return finish DOMElement with all listeners
    *
+   * @param defaultElement
    * @returns {Element}
    */
-  render() {
+  render(defaultElement) {
     throw new Error('render is not implemented');
   }
 
@@ -91,6 +92,16 @@ class Module {
     }
 
     return this.defaultDOMElement;
+  }
+
+  /**
+   * Get default DOMElement
+   *
+   * @returns {Element}
+   */
+  get renderedDOMElement() {
+    this.render(this.DOMElement);
+    return this.DOMElement;
   }
 
 
@@ -219,5 +230,5 @@ class Module {
       }
   }
 }
-
+Module.modules = {};
 export default Module;
