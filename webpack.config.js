@@ -17,13 +17,23 @@ module.exports = {
                     presets: ['es2015']
                 }
             }
-        ]
+        ],
+        rules: [{
+            test: /\.scss$/,
+            use: [{
+                loader: "style-loader" // creates style nodes from JS strings
+            }, {
+                loader: "css-loader" // translates CSS into CommonJS
+            }, {
+                loader: "sass-loader" // compiles Sass to CSS
+            }]
+        }]
     },
     stats: {
         colors: true
     },
     plugins: [
-        new webpack.optimize.UglifyJsPlugin({minimize: true})
+        //new webpack.optimize.UglifyJsPlugin({minimize: true})
     ],
     devtool: 'source-map'
 };

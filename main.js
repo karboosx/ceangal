@@ -1,6 +1,6 @@
 import TextIntro from './src/basic/TextIntro/TextIntro'
 import Module from './src/Module'
-
+import css from './main.scss'
 
 (function () {
 

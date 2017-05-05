@@ -27,14 +27,18 @@ class TextIntro extends Module{
         this.elements.nextButton = document.createElement('button');
 
         root.classList.add('text_intro');
+
+        let viewport = document.createElement('div');
+        viewport.classList.add('viewport');
         this.elements.text.classList.add('text');
         this.elements.nextButton.classList.add('button');
         this.elements.nextButton.addEventListener('click', () =>{
             this.runEvent('_next')
         });
 
-        root.appendChild(this.elements.text);
-        root.appendChild(this.elements.nextButton);
+        viewport.appendChild(this.elements.text);
+        viewport.appendChild(this.elements.nextButton);
+        root.appendChild(viewport);
 
 
         return root;
