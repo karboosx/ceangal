@@ -13,7 +13,7 @@
   "scripts": {
     "test": "mocha --compilers js:babel-core/register --recursive",
     "build": "webpack --colors",
-    "dev": "webpack-dev-server --colors",
+    "dev": "webpack-dev-server --inline --hot --colors",
     "clean": "rm -rf build",
     "lint": "eslint src test"
   },
