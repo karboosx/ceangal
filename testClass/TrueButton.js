@@ -22,17 +22,17 @@ class TrueButton extends Module{
     }
 
     render() {
-        let button = this.DOMElement;
-        button.innerText = this.vars.counter;
-        return button;
+        this.elements.button.innerText = this.vars.counter;
     }
 
     setupDefaultDOMElement() {
 
-        let button = document.createElement('button');
-        button.addEventListener('click', () => {this.runEvent('add')});
+        let root = document.createElement('div');
+        this.elements.button = document.createElement('button');
+        this.elements.button.addEventListener('click', () => {this.runEvent('add')});
 
-        return button;
+        root.appendChild(this.elements.button);
+        return root;
     }
 
 }

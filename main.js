@@ -1,4 +1,5 @@
 import TextIntro from './src/modules/TextIntro/TextIntro'
+import TrueButton from './testClass/TrueButton'
 import Module from './src/Module'
 import Plugin from './src/Plugin'
 import AlertPlugin from './src/plugins/AlertPlugin'
@@ -28,7 +29,13 @@ Plugin.registerPlugin('alert', AlertPlugin);
             ]
         },
         plugins:{
-            alert:{info:'testing'}
+            alert:{}
+        }
+    });
+
+    let tb = new TrueButton({
+        plugins:{
+            alert:{info:'tb'}
         }
     });
 
@@ -37,5 +44,6 @@ Plugin.registerPlugin('alert', AlertPlugin);
     });
 
     document.getElementById('app').appendChild(intro.renderedDOMElement);
+    document.getElementById('app').appendChild(tb.renderedDOMElement);
 
 })();
