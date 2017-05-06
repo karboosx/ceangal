@@ -47,6 +47,8 @@ class Module {
 
     this.pluginsInstances = {};
 
+    this.attachedEvents = [];
+
 
     if (typeof this.defaultVars_ == 'object') {
       Object.assign(this.vars, this.defaultVars_);
@@ -150,6 +152,50 @@ class Module {
     throw new Error('setupDOMElement is not implemented');
   }
 
+  /**
+   * Add new Attached Event
+   * All this events will be fire when attach function is call
+   *
+   * @param eventFunction
+   */
+  addAttachedEvent(eventFunction) {
+    this.attachedEvents.push(eventFunction);
+  }
+
+  /**
+   * Run attached events to DOM Element who been append on screen
+   *
+   * @param {Node} realDOMElement
+   * @returns {Node}
+   */
+  attach(realDOMElement) {
+    setTimeout(this.runAttachedFunction(realDOMElement), 1);
+    return realDOMElement;
+  }
+
+  /**
+   * Append module DOM Element to existing one on screen
+   *
+   * @param elementToAttach
+   * @returns {Node}
+   */
+  appendTo(elementToAttach){
+    let realDOMElement = elementToAttach.appendChild(this.renderedDOMElement);
+    this.attach(realDOMElement);
+    return realDOMElement;
+  }
+
+  /**
+   * Execute all attached events
+   *
+   * @param {Node} realDOMElement
+   */
+  runAttachedFunction(realDOMElement){
+    for (var i = 0; i < this.attachedEvents.length; i++) {
+      var attachedEvent = this.attachedEvents[i];
+      attachedEvent(this.DOMElement, realDOMElement);
+    }
+  }
   /**
    * Get default DOMElement
    *

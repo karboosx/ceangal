@@ -18,7 +18,11 @@
     "lint": "eslint src test",
     "coverage": "babel-node ./node_modules/.bin/babel-istanbul cover ./node_modules/.bin/_mocha ./test/*.js"
   },
-  "dependencies": {},
+  "dependencies": {
+    "jquery": "^3.2.1",
+    "jquery-ui": "^1.12.1",
+    "jquery-ui-dist": "^1.12.1"
+  },
   "devDependencies": {
     "babel-cli": "^6.0.0",
     "babel-core": "^6.1.21",

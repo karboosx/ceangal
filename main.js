@@ -5,14 +5,14 @@ import Module from './src/Module'
 import Plugin from './src/Plugin'
 import Template from './src/plugins/Template'
 import css from './main.scss'
+import Draggable from "./src/plugins/Draggable";
 
 
 Plugin.registerPlugin('template', Template);
-Plugin.registerPlugin('template', Template);
+Plugin.registerPlugin('draggable', Draggable);
 
 (function () {
 
-    let window = new Window();
 
     let intro = new TextIntro({
         vars:{
@@ -37,12 +37,18 @@ Plugin.registerPlugin('template', Template);
 
     let tb = new TrueButton();
 
-    intro.setEvent('end', function () {
+    let app = document.getElementById('app');
 
+    intro.appendTo(app);
+
+    intro.setEvent('end', function () {
+        tb.runEvent('add');
     });
 
-    document.getElementById('app').appendChild(intro.renderedDOMElement);
-    document.getElementById('app').appendChild(tb.renderedDOMElement);
-    document.getElementById('app').appendChild(window.renderedDOMElement);
+
+    new Window().appendTo(app).appendChild(tb.renderedDOMElement);
+    new Window().appendTo(app);
+    new Window().appendTo(app);
+
 
 })();
