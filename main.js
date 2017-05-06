@@ -1,6 +1,10 @@
-import TextIntro from './src/basic/TextIntro/TextIntro'
+import TextIntro from './src/modules/TextIntro/TextIntro'
 import Module from './src/Module'
+import Plugin from './src/Plugin'
+import AlertPlugin from './src/plugins/AlertPlugin'
 import css from './main.scss'
+
+Plugin.registerPlugin('alert', AlertPlugin);
 
 (function () {
 
@@ -22,6 +26,9 @@ import css from './main.scss'
                 },
 
             ]
+        },
+        plugins:{
+            alert:{info:'testing'}
         }
     });
 

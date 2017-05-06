@@ -1,3 +1,5 @@
+import Plugin from './Plugin'
+
 class Module {
 
   constructor(config) {
@@ -39,7 +41,9 @@ class Module {
 
     this.id = undefined;
 
-    //TODO plugins
+    this.plugins = {};
+
+    this.pluginsInstances = {};
 
 
     if (typeof this.defaultVars_ == 'object') {
@@ -78,6 +82,22 @@ class Module {
     if (config.hasOwnProperty('id')) {
       Module.assignID(config.id, this);
       this.id = config.id;
+    }
+
+    if (config.hasOwnProperty('plugins')) {
+      this.plugins = config.plugins;
+      this.mountPlugins();
+    }
+
+  }
+
+  /**
+   * Create and attach all plugins to this module
+   */
+  mountPlugins(){
+    for (var pluginName in this.plugins) {
+      let plugin = Plugin.createPlugin(pluginName, this.plugins[pluginName], this);
+      this.pluginsInstances[pluginName] = plugin;
     }
 
   }
@@ -210,7 +230,7 @@ class Module {
    * @param moduleClass
    */
   static registerModule(moduleName, moduleClass) {
-    this.modules[moduleName] = moduleClass;
+    Module.modules[moduleName] = moduleClass;
   }
 
   //TODO namespace's
