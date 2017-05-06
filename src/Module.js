@@ -25,6 +25,8 @@ class Module {
 
     this.defaultVars_ = this.defaultVars();
 
+    this.defaultPlugins_ = this.defaultPlugins();
+
     /**
      * All events assigned to this module
      * @type {Object}
@@ -50,9 +52,15 @@ class Module {
       Object.assign(this.vars, this.defaultVars_);
     }
 
+    if (typeof this.defaultPlugins_ == 'object') {
+      Object.assign(this.plugins, this.defaultPlugins_);
+    }
+
     if (typeof config == 'object') {
       this.loadConfig(config)
     }
+
+    this.mountPlugins();
   }
 
   getParent() {
@@ -67,6 +75,17 @@ class Module {
    * @returns {Object}
    */
   defaultVars(){
+    return {};
+  }
+
+  /**
+   * Override this if you want set default Plugins which have to be attached to module
+   * Syntax: {[plugin_name]:[plugin_config]}
+   * Syntax Example: {template:{minify:true}}
+   *
+   * @returns {Object}
+   */
+  defaultPlugins(){
     return {};
   }
 
@@ -86,7 +105,6 @@ class Module {
 
     if (config.hasOwnProperty('plugins')) {
       this.plugins = config.plugins;
-      this.mountPlugins();
     }
 
   }
@@ -128,7 +146,7 @@ class Module {
    *
    * @returns {Element}
    */
-  setupDefaultDOMElement() {
+  setup() {
     throw new Error('setupDOMElement is not implemented');
   }
 
@@ -139,7 +157,7 @@ class Module {
    */
   get DOMElement() {
     if (this.defaultDOMElement == undefined){
-      this.defaultDOMElement = this.setupDefaultDOMElement();
+      this.defaultDOMElement = this.setup();
     }
 
     return this.defaultDOMElement;

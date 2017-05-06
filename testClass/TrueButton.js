@@ -25,7 +25,7 @@ class TrueButton extends Module{
         this.elements.button.innerText = this.vars.counter;
     }
 
-    setupDefaultDOMElement() {
+    setup() {
 
         let root = document.createElement('div');
         this.elements.button = document.createElement('button');

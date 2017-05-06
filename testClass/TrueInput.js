@@ -24,7 +24,7 @@ class TrueButton extends Module{
         this.elements.text.innerText = this.vars.text + ' and clicked ' + this.vars.counter + ' times';
     }
 
-    setupDefaultDOMElement() {
+    setup() {
 
         let root = document.createElement('div');
         this.elements.text = document.createElement('div');

@@ -2,11 +2,19 @@ class Plugin {
 
     constructor(config, module) {
 
-        this.config = config;
+        this.config = {
+            visual:true
+        };
+
+        Object.assign(this.config, this.defaultConfig());
+
+        Object.assign(this.config, config);
 
         this.module = module;
 
-        this.DOMElement = module.DOMElement;
+        if (this.config.hasOwnProperty('visual') && this.config.visual === true) {
+            this.DOMElement = module.DOMElement;
+        }
 
         this.loaded();
     }
@@ -17,6 +25,15 @@ class Plugin {
      */
     loaded(){
         throw new Error('loaded function in not implemented')
+    }
+
+    /**
+     * Override this if you want set default config
+     *
+     * @returns {Object}
+     */
+    defaultConfig(){
+        return {};
     }
 
     /**

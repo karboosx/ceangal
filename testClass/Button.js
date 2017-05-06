@@ -31,7 +31,7 @@ class Button extends Module{
         return button;
     }
 
-    setupDefaultDOMElement() {
+    setup() {
 
         //pseudo DOM button
         return {

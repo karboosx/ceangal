@@ -14,7 +14,7 @@ class TextIntro extends Module{
         }
     }
 
-    setupDefaultDOMElement(){
+    setup(){
         this.setUpEvents();
         let root = document.createElement('div');
         this.elements.text = document.createElement('div');

@@ -27,7 +27,14 @@ module.exports = {
             }, {
                 loader: "sass-loader" // compiles Sass to CSS
             }]
-        }]
+        },
+            {
+                test: /\.template.html$/,
+                use: [ {
+                    loader: 'html-loader',
+                }],
+            }
+        ]
     },
     stats: {
         colors: true
