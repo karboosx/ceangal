@@ -13,7 +13,7 @@ pids
 
 # User-specific stuff:
 .idea/
-
+dist/
 
 # Sensitive or high-churn files:
 .idea/dataSources.ids
