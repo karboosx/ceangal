@@ -6,21 +6,22 @@ import css from './main.scss'
 
     let intro = new TextIntro({
         vars:{
-            // texts:[
-            //     {
-            //         text:'This is very first page!',
-            //     },
-            //     {
-            //         text:'Long ago....',
-            //     },
-            //     {
-            //         text:'There was a castle...',
-            //     },
-            //     {
-            //         text:'and that\'s it!',
-            //     },
-            //
-            // ]
+            texts:[
+                {
+                    text:'This is very first page!',
+                },
+                {
+                    text:'Long ago....',
+                },
+                {
+                    text:'There was a castle...',
+                },
+                {
+                    text:'and that\'s it!',
+                    button:'End'
+                },
+
+            ]
         }
     });
 

@@ -57,7 +57,7 @@ class TextIntro extends Module{
         });
 
         this.setEvent('_finish', () => {
-            this.DOMElement.parentNode.removeChild(this.DOMElement);
+            this.removeSelf();
 
             this.tryToRunEvent('end');
         })

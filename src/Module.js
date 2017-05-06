@@ -37,6 +37,10 @@ class Module {
 
     this.parent = undefined;
 
+    this.id = undefined;
+
+    //TODO plugins
+
 
     if (typeof this.defaultVars_ == 'object') {
       Object.assign(this.vars, this.defaultVars_);
@@ -73,6 +77,7 @@ class Module {
 
     if (config.hasOwnProperty('id')) {
       Module.assignID(config.id, this);
+      this.id = config.id;
     }
 
   }
@@ -168,6 +173,11 @@ class Module {
     }
   }
 
+  removeSelf(){
+    if (this.DOMElement != undefined && this.DOMElement.parentNode != undefined){
+      this.DOMElement.parentNode.removeChild(this.DOMElement);
+    }
+  }
 
   /**
    * Make new instance of this module and load config from JSON
@@ -202,6 +212,8 @@ class Module {
   static registerModule(moduleName, moduleClass) {
     this.modules[moduleName] = moduleClass;
   }
+
+  //TODO namespace's
 
   /**
    * Create module instance by passing their name and config
@@ -310,11 +322,17 @@ class Module {
           throw new Error('Can\'t find this module');
       }
 
+      let config = {
+        vars:this.vars,
+      };
+
+      if (this.id != undefined){
+        config.id = this.id;
+      }
+      //TODO saving children's
       return {
           'module-name':moduleName,
-          'module-config':{
-              vars:this.vars
-          }
+          'module-config':config
       }
   }
 }
