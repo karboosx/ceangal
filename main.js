@@ -39,16 +39,36 @@ Plugin.registerPlugin('draggable', Draggable);
 
     let app = document.getElementById('app');
 
-    intro.appendTo(app);
+    //intro.appendTo(app);
 
     intro.setEvent('end', function () {
         tb.runEvent('add');
     });
 
 
-    new Window().appendTo(app).appendChild(tb.renderedDOMElement);
-    new Window().appendTo(app);
-    new Window().appendTo(app);
+
+    for (let a=0;a<10;a++) {
+        let win1 = new Window();
+        win1.DOMElement.appendChild(new TrueButton().renderedDOMElement);
+
+        win1.DOMElement.appendChild(function () {
+            let button = document.createElement('button');
+            button.innerText = 'Close';
+            button.addEventListener('click', function () {
+                win1.removeSelf();
+            });
+
+            return button;
+        }());
+
+
+        let button = document.createElement('button');
+        button.innerText = 'Open';
+        button.addEventListener('click', function () {
+            win1.appendTo(app);
+        });
+        app.appendChild(button);
+    }
 
 
 })();

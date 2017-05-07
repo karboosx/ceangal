@@ -169,9 +169,19 @@ class Module {
    * @returns {Node}
    */
   attach(realDOMElement) {
-    setTimeout(this.runAttachedFunction(realDOMElement), 1);
+    setTimeout(() => {
+      this.runAttachedFunction(realDOMElement);
+      this.attached();
+    }, 1);
     return realDOMElement;
   }
+
+  /**
+   * Event fired when attach element to document
+   *
+   */
+  attached() {}
+
 
   /**
    * Append module DOM Element to existing one on screen
