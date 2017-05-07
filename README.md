@@ -1,4 +1,4 @@
-# Ceangal.js 
+# Ceangal.js [![Build Status](https://travis-ci.org/karboosx/ceangal.svg?branch=master)](https://travis-ci.org/karboosx/ceangal)
 
 GUI Engine for HTML5 games
 
