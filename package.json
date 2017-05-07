@@ -11,7 +11,7 @@
     "npm package"
   ],
   "scripts": {
-    "test": "mocha --compilers js:babel-core/register --recursive",
+    "test": "mocha -r jsdom-global/register --compilers js:babel-core/register --recursive",
     "build": "webpack --colors",
     "dev": "webpack-dev-server --inline --hot --colors",
     "clean": "rm -rf build",
@@ -39,6 +39,8 @@
     "html-loader": "^0.4.5",
     "isparta": "^4.0.0",
     "istanbul": "^0.4.5",
+    "jsdom": "9.12.x",
+    "jsdom-global": "2.1.1",
     "mocha": "^2.3.4",
     "node-sass": "^4.5.2",
     "sass-loader": "^6.0.3",
