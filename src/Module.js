@@ -49,6 +49,10 @@ class Module {
 
     this.attachedEvents = [];
 
+    this.flags = {
+      attachedEvents:false
+    };
+
 
     if (typeof this.defaultVars_ == 'object') {
       Object.assign(this.vars, this.defaultVars_);
@@ -201,10 +205,15 @@ class Module {
    * @param {Node} realDOMElement
    */
   runAttachedFunction(realDOMElement){
+
+    if (this.flags.attachedEvents) return;
+
     for (var i = 0; i < this.attachedEvents.length; i++) {
       var attachedEvent = this.attachedEvents[i];
       attachedEvent(this.DOMElement, realDOMElement);
     }
+
+    this.flags.attachedEvents = true;
   }
   /**
    * Get default DOMElement
