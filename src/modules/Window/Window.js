@@ -16,7 +16,19 @@ class Window extends Module{
     }
 
     render(){
+        this.setWindowSize(this.vars.width,this.vars.height);
+    }
 
+    setWindowSize(width, height){
+        this.DOMElement.style.width = width+'px';
+        this.DOMElement.style.height = height+'px';
+    }
+
+    defaultVars(){
+        return {
+            width:150,
+            height:100
+        }
     }
 
 }

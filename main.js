@@ -48,7 +48,11 @@ Plugin.registerPlugin('draggable', Draggable);
 
 
     for (let a=0;a<10;a++) {
-        let win1 = new Window();
+        let win1 = new Window({
+            vars:{
+                height:300
+            }
+        });
         win1.DOMElement.appendChild(new TrueButton().renderedDOMElement);
 
         win1.DOMElement.appendChild(function () {
