@@ -221,11 +221,18 @@ class Module {
    * @returns {Element}
    */
   get DOMElement() {
-    if (this.defaultDOMElement == undefined){
-      this.defaultDOMElement = this.setup();
+    if (this.defaultDOMElement == undefined) {
+      this.make();
     }
-
     return this.defaultDOMElement;
+  }
+
+  make() {
+    this.defaultDOMElement = this.setup();
+
+    if (this.id != undefined){
+      this.defaultDOMElement.setAttribute('id', this.id);
+    }
   }
 
   /**

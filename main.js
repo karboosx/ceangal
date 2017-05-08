@@ -35,7 +35,9 @@ Plugin.registerPlugin('draggable', Draggable);
         },
     });
 
-    let tb = new TrueButton();
+    let tb = new TrueButton({
+        id:'test'
+    });
 
     let app = document.getElementById('app');
 
@@ -44,6 +46,8 @@ Plugin.registerPlugin('draggable', Draggable);
     intro.setEvent('end', function () {
         tb.runEvent('add');
     });
+
+    tb.appendTo(app);
 
 
 
