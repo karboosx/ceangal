@@ -43,6 +43,8 @@ class Module {
 
     this.id = undefined;
 
+    this.class = undefined;
+
     this.plugins = {};
 
     this.pluginsInstances = {};
@@ -107,6 +109,10 @@ class Module {
     if (config.hasOwnProperty('id')) {
       Module.assignID(config.id, this);
       this.id = config.id;
+    }
+
+    if (config.hasOwnProperty('class')) {
+      this.class = config.class;
     }
 
     if (config.hasOwnProperty('plugins')) {
@@ -227,12 +233,20 @@ class Module {
     return this.defaultDOMElement;
   }
 
+  /**
+   * Making default DOM Element
+   */
   make() {
     this.defaultDOMElement = this.setup();
 
     if (this.id != undefined){
       this.defaultDOMElement.setAttribute('id', this.id);
     }
+
+    if (this.class != undefined){
+      this.defaultDOMElement.className += " "+this.class;
+    }
+
   }
 
   /**
