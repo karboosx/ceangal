@@ -147,7 +147,7 @@ class Module {
    *
    * @returns {undefined}
    */
-  rerender() {
+  refresh() {
     this.render(this.DOMElement);
   }
 

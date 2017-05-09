@@ -53,7 +53,7 @@ class TextIntro extends Module{
         this.setEvent('_next', () => {
             this.vars.position++;
 
-            this.rerender();
+            this.refresh();
         });
 
         this.setEvent('_finish', () => {

@@ -1,5 +1,6 @@
 import TextIntro from './src/modules/TextIntro/TextIntro'
 import Window from './src/modules/Window/Window'
+import Value from './src/modules/Value/Value'
 import TrueButton from './testClass/TrueButton'
 import Module from './src/Module'
 import Plugin from './src/Plugin'
@@ -35,12 +36,18 @@ Plugin.registerPlugin('draggable', Draggable);
         },
     });
 
+    let value = new Value;
+
     let tb = new TrueButton({
         id:'test',
         class:'test'
     });
 
     let app = document.getElementById('app');
+
+    value.appendTo(app);
+    value.vars.text = 0;
+    value.refresh();
 
     //intro.appendTo(app);
 
@@ -55,7 +62,7 @@ Plugin.registerPlugin('draggable', Draggable);
     for (let a=0;a<10;a++) {
         let win1 = new Window({
             vars:{
-                height:300
+                height:100
             }
         });
         win1.DOMElement.appendChild(new TrueButton().renderedDOMElement);
@@ -75,6 +82,8 @@ Plugin.registerPlugin('draggable', Draggable);
         button.innerText = 'Open';
         button.addEventListener('click', function () {
             win1.appendTo(app);
+            value.vars.text++;
+            value.refresh();
         });
         app.appendChild(button);
     }
