@@ -12,18 +12,25 @@ class Module {
 
     /**
      * Help list
+     * TODO remove
      *
      * @type {Object}
      */
     this.vars_description = {};
 
     /**
-     * Default values for this.var
+     * Default values from extended class
      *
      * @type {Object}
      */
 
     this.defaultVars_ = this.defaultVars();
+
+    /**
+     * Default plugins from extended class
+     *
+     * @type {Object}
+     */
 
     this.defaultPlugins_ = this.defaultPlugins();
 
@@ -33,24 +40,83 @@ class Module {
      */
     this.events = {};
 
+    /**
+     * DOM Element returned by setup method
+     *
+     * @type {Node}
+     */
     this.defaultDOMElement = undefined;
 
+    /**
+     * List of elements important to rendering
+     *
+     * You can and should use this for changing data to display
+     *
+     * @type {Object}
+     */
     this.elements = {};
 
+    /**
+     * TODO remove from Module Class
+     */
     this.childs = [];
 
+    /**
+     * TODO remove from Module Class
+     */
     this.parent = undefined;
 
+    /**
+     * ID for specific module instance
+     * Module which have set a ID can be accesed by Module.getModulebyID
+     *
+     * Can be set by config
+     * {
+     *   id:'player'
+     * }
+     *
+     * @type {int}
+     */
     this.id = undefined;
 
+    /**
+     * Class which have to by added to DOM element
+     * Can be set by config
+     * {
+     *   class:'window-ui'
+     * }
+     *
+     * @type {undefined|string}
+     */
     this.class = undefined;
 
+    /**
+     * List of plugins and they configs
+     *
+     * @type {{plugin_name:{config_key:'config_value'}}}
+     */
     this.plugins = {};
 
+    /**
+     * Instances of plugins
+     *
+     * @type {Object}
+     */
     this.pluginsInstances = {};
 
+    /**
+     * List of event functions which have to be fired before attach module DOM element do viewport
+     *
+     * @type {Array}
+     */
     this.attachedEvents = [];
 
+    /**
+     * Internal object of flags
+     * Best to not override it
+     *
+     * @type {{attachedEvents: boolean}}
+     */
     this.flags = {
       attachedEvents:false
     };
@@ -71,6 +137,7 @@ class Module {
     this.mountPlugins();
   }
 
+  // TODO remove
   getParent() {
     if (this.parent == undefined){
       throw new Error('This module don\'t have parent');
@@ -221,6 +288,7 @@ class Module {
 
     this.flags.attachedEvents = true;
   }
+
   /**
    * Get default DOMElement
    *
@@ -297,6 +365,9 @@ class Module {
     }
   }
 
+  /**
+   * This method remove self from viewport but module still working, so you can still use appendTo()
+   */
   removeSelf(){
     if (this.DOMElement != undefined && this.DOMElement.parentNode != undefined){
       this.DOMElement.parentNode.removeChild(this.DOMElement);
@@ -315,6 +386,7 @@ class Module {
 
   /**
    * Return help string
+   * TODO remove
    *
    * @returns {string}
    */
@@ -436,6 +508,7 @@ class Module {
   /**
    * Return saved version of module
    * For use by Module.create
+   * TODO saving all values (for ex. class)
    *
    * @returns {Object}
    */
@@ -453,7 +526,7 @@ class Module {
       if (this.id != undefined){
         config.id = this.id;
       }
-      //TODO saving children's
+
       return {
           'module-name':moduleName,
           'module-config':config
