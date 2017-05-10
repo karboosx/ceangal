@@ -6,7 +6,9 @@ class Template extends Plugin{
 
     loaded(){
         this.module.addAttachedEvent((DOMElement, realDOMElement) => {
-            $(realDOMElement).draggable({});//todo viewport boundaries
+            $(realDOMElement).draggable({
+                containment:'document'
+            });
         });
 
     }
