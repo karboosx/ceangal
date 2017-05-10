@@ -2,12 +2,18 @@ import Template from './Window.template.html'
 import Module from "../../Module";
 import css from './Window.scss'
 
+import Plugin from '../../../src/Plugin'
+import DraggablePlugin from "../../../src/plugins/Draggable";
+import TemplatePlugin from '../../../src/plugins/Template'
+Plugin.registerPlugin('_template', TemplatePlugin);
+Plugin.registerPlugin('_draggable', DraggablePlugin);
+
 class Window extends Module{
 
     defaultPlugins(){
         return {
-            'template':{},
-            'draggable':{}
+            '_template':{},
+            '_draggable':{}
         }
     }
 

@@ -3,14 +3,7 @@ import Window from './src/modules/Window/Window'
 import Value from './src/modules/Value/Value'
 import TrueButton from './testClass/TrueButton'
 import Module from './src/Module'
-import Plugin from './src/Plugin'
-import Template from './src/plugins/Template'
 import css from './main.scss'
-import Draggable from "./src/plugins/Draggable";
-
-
-Plugin.registerPlugin('template', Template);
-Plugin.registerPlugin('draggable', Draggable);
 
 (function () {
 
