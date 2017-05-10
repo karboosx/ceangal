@@ -2,6 +2,7 @@ import TextIntro from './src/modules/TextIntro/TextIntro'
 import Window from './src/modules/Window/Window'
 import Value from './src/modules/Value/Value'
 import ContextMenu from './src/modules/ContextMenu/ContextMenu'
+import Board from './src/modules/Board/Board'
 import TrueButton from './testClass/TrueButton'
 import Module from './src/Module'
 import css from './main.scss'
@@ -123,6 +124,9 @@ import css from './main.scss'
         });
         app.appendChild(button);
     }
+
+    let board = new Board();
+    board.appendTo(app);
 
 
 })();
