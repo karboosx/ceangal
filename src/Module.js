@@ -135,6 +135,11 @@ class Module {
     }
 
     this.mountPlugins();
+
+    this.setEvent('default', () => {
+        alert('This is default event');
+    });
+
   }
 
   // TODO remove

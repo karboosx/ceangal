@@ -1,6 +1,7 @@
 import TextIntro from './src/modules/TextIntro/TextIntro'
 import Window from './src/modules/Window/Window'
 import Value from './src/modules/Value/Value'
+import ContextMenu from './src/modules/ContextMenu/ContextMenu'
 import TrueButton from './testClass/TrueButton'
 import Module from './src/Module'
 import css from './main.scss'
@@ -42,6 +43,7 @@ import css from './main.scss'
         class:'test'
     });
 
+    let body = document.getElementsByTagName('body')[0];
     let app = document.getElementById('app');
 
     value.appendTo(app);
@@ -54,6 +56,42 @@ import css from './main.scss'
 
     tb.appendTo(app);
 
+    var menu = [
+        {
+            text:'Alert',
+            event:'default'
+        },
+        {
+            text:'alert2',
+            event:'alert2'
+        },
+        {
+            text:'alert3',
+            event:'alert3'
+        },
+
+    ];
+
+    var contextMenu = new ContextMenu({
+        vars:{
+            menu:menu
+        }
+    });
+
+    contextMenu.setEvent('alert2', () => alert('alert 2'));
+    contextMenu.setEvent('alert3', () => alert('alert 3'));
+
+
+    body.addEventListener('contextmenu', (event)=>{
+        event.preventDefault();
+        contextMenu.vars.x = event.pageX;
+        contextMenu.vars.y = event.pageY;
+        contextMenu.appendTo(body);
+        return false;
+    });
+    body.addEventListener('click', (event)=>{
+        contextMenu.removeSelf();
+    });
 
 
     for (let a=0;a<10;a++) {
