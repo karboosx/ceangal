@@ -8,6 +8,7 @@ import Module from './src/Module'
 import css from './main.scss'
 import $ from 'jquery';
 import 'jquery-ui-dist/jquery-ui'
+import Button from "./src/modules/Button/Button";
 
 (function () {
 
@@ -101,36 +102,6 @@ import 'jquery-ui-dist/jquery-ui'
     contextMenu.setEvent('alert2', () => alert('alert 2'));
     contextMenu.setEvent('alert3', () => alert('alert 3'));
 
-
-    for (let a=0;a<10;a++) {
-        let win1 = new Window({
-            vars:{
-                height:100
-            }
-        });
-        win1.DOMElement.appendChild(new TrueButton().renderedDOMElement);
-
-        win1.DOMElement.appendChild(function () {
-            let button = document.createElement('button');
-            button.innerText = 'Close';
-            button.addEventListener('click', function () {
-                win1.removeSelf();
-            });
-
-            return button;
-        }());
-
-
-        let button = document.createElement('button');
-        button.innerText = 'Open';
-        button.addEventListener('click', function () {
-            win1.appendTo(app);
-            value.vars.value++;
-            value.refresh();
-        });
-        app.appendChild(button);
-    }
-
     let board = new Board({
         vars:{
             width:2500,
@@ -153,6 +124,37 @@ import 'jquery-ui-dist/jquery-ui'
         contextMenu.removeSelf();
     });
 
+    let button = new Button({
+        vars:{
+            x:180,
+            y:33,
+            text:'Make sth'
+        }
+    });
+
+    button.setEvent('click', function () {
+        let win1 = new Window({
+            vars:{
+                height:100
+            }
+        });
+        win1.DOMElement.appendChild(new TrueButton().renderedDOMElement);
+
+        win1.DOMElement.appendChild(function () {
+            let button = document.createElement('button');
+            button.innerText = 'Close';
+            button.addEventListener('click', function () {
+                win1.removeSelf();
+            });
+
+            return button;
+        }());
+
+        win1.appendTo(app);
+
+    });
+
+    button.appendTo(app);
 
 
 })();
