@@ -68,8 +68,8 @@ class ContextMenu extends Module{
                 menu.animate({
                     opacity:1,
                     left:0
-                },200);
-            },i*100);
+                },160);
+            },i*60);
         }
 
     }
