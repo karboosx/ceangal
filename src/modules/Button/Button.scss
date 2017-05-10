@@ -1,0 +1,24 @@
+.button__module{
+    position: absolute;
+
+    .button{
+        border: 1px solid #886f71;
+        background: #ececf3;
+        padding: 4px;
+        z-index: 100;
+        border-radius: 7px;
+        color: #424242;
+        min-width: 55px;
+        min-height: 32px;
+        text-align: center;
+        font-size: 18px;
+        position: relative;
+        outline: none;
+        cursor: pointer;
+
+        &:hover{
+            border: 1px solid #8e7ca9;
+            background: #ffffff;
+        }
+    }
+}
