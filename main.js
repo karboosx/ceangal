@@ -36,7 +36,13 @@ Plugin.registerPlugin('draggable', Draggable);
         },
     });
 
-    let value = new Value;
+    let value = new Value({
+        vars:{
+            x:100,
+            y:20,
+            value:0
+        }
+    });
 
     let tb = new TrueButton({
         id:'test',
@@ -46,8 +52,6 @@ Plugin.registerPlugin('draggable', Draggable);
     let app = document.getElementById('app');
 
     value.appendTo(app);
-    value.vars.text = 0;
-    value.refresh();
 
     //intro.appendTo(app);
 
@@ -82,7 +86,7 @@ Plugin.registerPlugin('draggable', Draggable);
         button.innerText = 'Open';
         button.addEventListener('click', function () {
             win1.appendTo(app);
-            value.vars.text++;
+            value.vars.value++;
             value.refresh();
         });
         app.appendChild(button);
