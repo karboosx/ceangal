@@ -30,6 +30,8 @@ import css from './main.scss'
             ]
         },
     });
+    let body = document.getElementsByTagName('body')[0];
+    let app = document.getElementById('app');
 
     let value = new Value({
         vars:{
@@ -39,6 +41,18 @@ import css from './main.scss'
             text:'Research'
         }
     });
+    value.appendTo(app);
+    let value2 = new Value({
+        vars:{
+            x:10,
+            y:20,
+            value:0,
+            text:'Research'
+        },
+        class:'red'
+    });
+
+    value2.appendTo(app);
 
     setInterval(function () {
         value.vars.value++;
@@ -49,10 +63,7 @@ import css from './main.scss'
         class:'test'
     });
 
-    let body = document.getElementsByTagName('body')[0];
-    let app = document.getElementById('app');
 
-    value.appendTo(app);
 
     //intro.appendTo(app);
 
