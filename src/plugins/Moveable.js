@@ -25,9 +25,13 @@ class Moveable extends Plugin{
             }
 
 
-            console.log(box,width,height);
             $(realDOMElement).draggable({
-                containment:box
+                containment:box,
+                snapTolerance:0,
+                drag:(event, ui) => {
+                    this.module.vars.left = ui.position.left;
+                    this.module.vars.top = ui.position.top;
+                }
             });
         });
 

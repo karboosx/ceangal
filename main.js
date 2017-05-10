@@ -57,7 +57,7 @@ import css from './main.scss'
     setInterval(function () {
         value.vars.value++;
         value.refresh();
-    }, 400);
+    }, 4000);
     let tb = new TrueButton({
         id:'test',
         class:'test'
@@ -100,18 +100,6 @@ import css from './main.scss'
     contextMenu.setEvent('alert3', () => alert('alert 3'));
 
 
-    body.addEventListener('contextmenu', (event)=>{
-        event.preventDefault();
-        contextMenu.vars.x = event.pageX;
-        contextMenu.vars.y = event.pageY;
-        contextMenu.appendTo(body);
-        return false;
-    });
-    body.addEventListener('click', (event)=>{
-        contextMenu.removeSelf();
-    });
-
-
     for (let a=0;a<10;a++) {
         let win1 = new Window({
             vars:{
@@ -141,8 +129,27 @@ import css from './main.scss'
         app.appendChild(button);
     }
 
-    let board = new Board();
+    let board = new Board({
+        vars:{
+            width:2500,
+            height:1800
+        }
+    });
+
     board.appendTo(app);
+
+    board.DOMElement.addEventListener('contextmenu', (event)=>{
+        event.preventDefault();
+
+        contextMenu.vars.x = event.pageX - board.vars.left;
+        contextMenu.vars.y = event.pageY - board.vars.top;
+        contextMenu.appendTo(board.DOMElement);
+        return false;
+    });
+    board.DOMElement.addEventListener('click', (event)=>{
+        contextMenu.removeSelf();
+    });
+
 
 
 })();
