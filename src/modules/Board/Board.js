@@ -1,6 +1,9 @@
 import Module from "../../Module";
 import Plugin from '../../../src/Plugin'
 import MoveablePlugin from "../../../src/plugins/Moveable";
+import $ from 'jquery';
+import 'jquery-ui-dist/jquery-ui'
+
 Plugin.registerPlugin('_moveable', MoveablePlugin);
 
 class Board extends Module{

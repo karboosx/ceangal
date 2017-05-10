@@ -6,6 +6,8 @@ import Board from './src/modules/Board/Board'
 import TrueButton from './testClass/TrueButton'
 import Module from './src/Module'
 import css from './main.scss'
+import $ from 'jquery';
+import 'jquery-ui-dist/jquery-ui'
 
 (function () {
 
@@ -136,14 +138,15 @@ import css from './main.scss'
         }
     });
 
-    board.appendTo(app);
+    var boardElement = board.appendTo(app);
 
     board.DOMElement.addEventListener('contextmenu', (event)=>{
         event.preventDefault();
 
-        contextMenu.vars.x = event.pageX - board.vars.left;
-        contextMenu.vars.y = event.pageY - board.vars.top;
-        contextMenu.appendTo(board.DOMElement);
+        contextMenu.vars.x = event.pageX - $(board.DOMElement).position().left;
+        contextMenu.vars.y = event.pageY - $(board.DOMElement).position().top;
+        console.log(contextMenu.vars);
+        contextMenu.appendTo(boardElement);
         return false;
     });
     board.DOMElement.addEventListener('click', (event)=>{

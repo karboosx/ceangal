@@ -1,4 +1,6 @@
 import Module from "../../Module";
+import $ from 'jquery';
+import 'jquery-ui-dist/jquery-ui'
 
 class ContextMenu extends Module{
 
@@ -19,6 +21,8 @@ class ContextMenu extends Module{
         let root = document.createElement('div');
         root.classList.add('context_menu__module');
 
+        this.elements.menus = [];
+
         for (let i = 0; i < this.vars.menu.length; i++) {
             let menu = this.vars.menu[i];
 
@@ -36,6 +40,8 @@ class ContextMenu extends Module{
                 });
             }
 
+            this.elements.menus.push(menuElement);
+
             root.appendChild(menuElement);
         }
 
@@ -49,8 +55,23 @@ class ContextMenu extends Module{
     }
 
     render() {
-        console.log(this.vars);
         this.setWindowPosition(this.vars.x, this.vars.y);
+
+        for (let i = 0; i < this.elements.menus.length; i++) {
+            let menu = $(this.elements.menus[i]);
+            menu.css({
+                opacity:0,
+                left:-10*i+20
+            });
+
+            setTimeout(() => {
+                menu.animate({
+                    opacity:1,
+                    left:0
+                },200);
+            },i*100);
+        }
+
     }
 
 }
