@@ -25,9 +25,16 @@ class ContextMenu extends Module{
             let menuElement = document.createElement('div');
             menuElement.classList.add('menu');
             menuElement.innerText = menu.text;
-            menuElement.addEventListener('click', () =>{
-                this.runEvent(menu.event);
-            });
+
+            if (menu.hasOwnProperty('active') && !menu.active){
+                menuElement.setAttribute('disabled','disabled');
+                menuElement.classList.add('disabled');
+            }else {
+                menuElement.addEventListener('click', () => {
+                    this.runEvent(menu.event);
+                    this.removeSelf();
+                });
+            }
 
             root.appendChild(menuElement);
         }

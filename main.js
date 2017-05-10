@@ -63,7 +63,8 @@ import css from './main.scss'
         },
         {
             text:'alert2',
-            event:'alert2'
+            event:'alert2',
+            active:false
         },
         {
             text:'alert3',
