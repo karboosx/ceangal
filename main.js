@@ -35,10 +35,15 @@ import css from './main.scss'
         vars:{
             x:100,
             y:20,
-            value:0
+            value:0,
+            text:'Research'
         }
     });
 
+    setInterval(function () {
+        value.vars.value++;
+        value.refresh();
+    }, 400);
     let tb = new TrueButton({
         id:'test',
         class:'test'
