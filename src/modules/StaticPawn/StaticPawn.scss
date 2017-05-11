@@ -1,0 +1,24 @@
+.static_pawn__module{
+    position: absolute;
+
+    .button{
+        background: rgba(25, 25, 25, 0.67);
+        color: #e0e0e0;
+        padding: 4px;
+        z-index: 100;
+        min-width: 55px;
+        min-height: 22px;
+        text-align: center;
+        font-size: 18px;
+        position: relative;
+        outline: none;
+        cursor: pointer;
+
+        &:hover{
+            background: rgba(68, 68, 68, 0.67);
+            color: #ffe9e2;
+        }
+
+    }
+
+}

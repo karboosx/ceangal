@@ -9,6 +9,7 @@ import css from './main.scss'
 import $ from 'jquery';
 import 'jquery-ui-dist/jquery-ui'
 import Button from "./src/modules/Button/Button";
+import StaticPawn from "./src/modules/StaticPawn/StaticPawn";
 
 (function () {
 
@@ -123,6 +124,16 @@ import Button from "./src/modules/Button/Button";
     board.DOMElement.addEventListener('click', (event)=>{
         contextMenu.removeSelf();
     });
+
+    let staticPawn = new StaticPawn({
+        vars:{
+            x:864,
+            y:836
+        }
+    });
+
+    staticPawn.appendTo(boardElement);
+
 
     let button = new Button({
         vars:{
