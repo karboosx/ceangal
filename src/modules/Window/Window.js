@@ -5,15 +5,18 @@ import css from './Window.scss'
 import Plugin from '../../../src/Plugin'
 import DraggablePlugin from "../../../src/plugins/Draggable";
 import TemplatePlugin from '../../../src/plugins/Template'
+import CenteredPlugin from '../../../src/plugins/Centered'
 Plugin.registerPlugin('_template', TemplatePlugin);
 Plugin.registerPlugin('_draggable', DraggablePlugin);
+Plugin.registerPlugin('_centered', CenteredPlugin);
 
 class Window extends Module{
 
     defaultPlugins(){
         return {
             '_template':{},
-            '_draggable':{}
+            '_draggable':{},
+            '_centered':{}
         }
     }
 
